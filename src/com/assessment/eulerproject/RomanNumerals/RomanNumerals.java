@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import com.assessment.eulerproject.constants.Message;
 import com.assessment.eulerproject.exceptions.EulerException;
 import com.assessment.eulerproject.exceptions.PasscodeException;
 import com.assessment.eulerproject.services.InputReaderService;
@@ -36,8 +37,10 @@ public class RomanNumerals implements RepositoryService,InputReaderService, Roma
 		List<String> inputRomans;
 		try {
 			inputRomans = romanNumerals.readInput("Roman.txt");
+			if(null==inputRomans) {
+				throw new EulerException(Message.ERROR);
+			}
 			Integer charsSaved = 0;
-			
 			
 			for (String input : inputRomans) {
 				
@@ -48,7 +51,7 @@ public class RomanNumerals implements RepositoryService,InputReaderService, Roma
 			}
 			
 			System.out.println("The number of characters that were saved is "+charsSaved);
-		} catch (PasscodeException e) {
+		} catch (EulerException e) {
 			// Do something with the exception
 			System.out.println(e.getMessage());
 		}
@@ -67,7 +70,7 @@ public class RomanNumerals implements RepositoryService,InputReaderService, Roma
 	}
 
 	@Override
-	public List<String> readInput(String path) throws PasscodeException {
+	public List<String> readInput(String path) throws EulerException {
 		return inputReader.readInput(path);
 	}
 

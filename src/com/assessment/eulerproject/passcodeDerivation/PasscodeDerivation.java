@@ -16,6 +16,7 @@ public class PasscodeDerivation implements InputReaderService, PasscodeDerivatio
 	static InputReaderService inputReader = new InputReaderServiceImpl();
 	static PasscodeDerivationService passcodeDerivationService = new PasscodeDerivationServiceImpl();
 
+	
 	public static void main(String[] args) throws PasscodeException {
 		PasscodeDerivation passcodeDerivation = new PasscodeDerivation();
 		List<String> keyLogs;
@@ -37,9 +38,9 @@ public class PasscodeDerivation implements InputReaderService, PasscodeDerivatio
 	}
 
 	@Override
-	public List<String> readInput(String path) throws PasscodeException {
+	public List<String> readInput(String path) throws EulerException {
 		if (null == path || path.length() == 0)
-			throw new PasscodeException(Message.INVALIDPATH);
+			throw new EulerException(Message.INVALIDPATH);
 		return inputReader.readInput(path);
 	}
 
